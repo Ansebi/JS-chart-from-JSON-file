@@ -1,10 +1,55 @@
 <html>
 <body>
-<div id='the_div'>Default text</div>
-<button id='the_onlybutton'>GO!</button>
+<div id="the_div">Default text</div>
+<button
+id="the_onlybutton"
+class="button1"
+onmouseover="readTextFile('http://localhost:8000/data.json')"
+>
+GO!
+</button>
 </body>
+
+<style>
+.button1:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
+
 <script>
-x = 'Lilu Bakes'
-document.getElementById('the_div').innerHTML = x;
+// (async () => {
+//     let DB = await(await fetch('data.json')).json();
+//
+//     console.log(DB);
+// })();
+
+function revealName() {
+  document.getElementById("the_div").innerHTML = x;
+}
+let x = "Lilu Bakes"
+
+fetch("http://localhost:8000/data.json")
+    .then((response) => response.json())
+    .then((json) => console.log(json));
+
+function readTextFile(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                alert(allText);
+            }
+        }
+    }
+    rawFile.send(null);
+}
+// readTextFile("file:///F:/Documents/JavaScript/Passing variables between Python and JS/data.json");
 </script>
 </html>

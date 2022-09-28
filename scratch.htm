@@ -1,7 +1,42 @@
+<html>
 <body>
-  <h1>Hello, my name is <span id="name"></span></h1>
-  <script>
-    let name = "111";
-    document.getElementById("name").innerHTML = name;
-  </script>
+<div id="the_div">Default text</div>
+<button
+id="the_onlybutton"
+class="button1"
+onmouseover="readAndShow_(ADDRESS_)">
+<!-- onmouseover="readTextFile('http://localhost:8000/data.json')" -->
+GO!
+</button>
 </body>
+
+<style>
+.button1:hover {
+  background-color: #555555;
+  color: white;
+}
+</style>
+
+<script>
+
+let x = "Lilu Bakes";
+let y;
+let ADDRESS_ = "http://localhost:8000/data.json";
+
+function readFile_(address_) {
+  fetch(address_, {cache: "reload"})
+    .then((response) => response.text())
+    .then((text) => y = text)
+  return y;
+}
+
+function revealMessage(message_) {
+  document.getElementById("the_div").innerHTML = message_;
+}
+
+function readAndShow_(address_) {
+  revealMessage(readFile_(address_));
+}
+
+</script>
+</html>

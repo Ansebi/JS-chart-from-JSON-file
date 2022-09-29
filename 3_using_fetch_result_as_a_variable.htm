@@ -15,14 +15,37 @@ function revealMessage_(message_) {
   document.getElementById("the_div").innerHTML = message_;
 }
 
+// async function readJSON_(address_) {
+//   const resp_ = await fetch(address_, {cache: "reload"});
+//   console.log('resp_', resp_);
+//   const json_parsed = await resp_.json();
+//   console.log('json_parsed', json_parsed);
+//   const name_ = await json_parsed.users[0].name;
+//   console.log('name_', name_);
+//   return name_;
+// }
+
 async function readJSON_(address_) {
   const resp_ = await fetch(address_, {cache: "reload"});
   console.log('resp_', resp_);
   const json_parsed = await resp_.json();
   console.log('json_parsed', json_parsed);
-  const name_ = await json_parsed.users[0].name;
-  console.log('name_', name_);
-  return name_;
+  return json_parsed;
+}
+
+async function JSON_extract_value(
+  parsed_json_object,
+  upper_level,
+  n,
+  field_) {
+
+
+  // json = {upper_level: [{...}, {...}, {...} ...]}
+  const resp_ = await fetch(address_, {cache: "reload"});
+  console.log('resp_', resp_);
+  const json_parsed = await resp_.json();
+  console.log('json_parsed', json_parsed);
+  return json_parsed;
 }
 
 async function readAndShowValue_(address_) {

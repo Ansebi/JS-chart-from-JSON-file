@@ -3,22 +3,23 @@
 <body>
 <div id="the_div">Hidden name</div>
 <div id="address_div"></div>
-<button onclick="readAndShowText_(JSON_ADDRESS_)">Read and Display</button>
+<button onclick="readAndShowJSON_(JSON_ADDRESS_)">Read and Display</button>
 </body>
 
 <script>
 let JSON_ADDRESS_ = "http://localhost:8000/data.json";
 document.getElementById("address_div").innerHTML = "File to parse: " + JSON_ADDRESS_;
 
-function revealMessage(message_) {
+function revealMessage_(message_) {
   document.getElementById("the_div").innerHTML = message_;
 }
 
-function readAndShowText_(address_) {
+function readAndShowJSON_(address_) {
+  // In this example we access the "name" field of the first entry
   fetch(address_, {cache: "reload"})
     .then((response_) => response_.json())
     .then((json_parsed) => json_parsed.users[0].name)
-    .then((name_) => revealMessage(name_));
+    .then((name_) => revealMessage_(name_));
 }
 
 </script>

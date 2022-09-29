@@ -1,0 +1,34 @@
+<html>
+
+<body>
+<div id="the_div">Hidden name</div>
+<div id="address_div"></div>
+<button onclick="readAndShowValue_(JSON_ADDRESS_)">Read and Display</button>
+</body>
+
+<script>
+let JSON_ADDRESS_ = "http://localhost:8000/data.json";
+document.getElementById("address_div").innerHTML = "File to parse: " + JSON_ADDRESS_;
+
+function revealMessage_(message_) {
+  var message_;
+  document.getElementById("the_div").innerHTML = message_;
+}
+
+async function readJSON_(address_) {
+  const resp_ = await fetch(address_, {cache: "reload"});
+  console.log('resp_', resp_);
+  const json_parsed = await resp_.json();
+  console.log('json_parsed', json_parsed);
+  const name_ = await json_parsed.users[0].name;
+  console.log('name_', name_);
+  return name_;
+}
+
+async function readAndShowValue_(address_) {
+  const value_ = await readJSON_(address_);
+  revealMessage_(value_);
+}
+
+</script>
+</html>

@@ -1,1 +1,15 @@
-{"1": "hello"}
+{
+  "users":
+  [
+    {
+      "user_id": 115,
+      "name": "Nicolas Cage",
+      "secret_passion": "ballet"
+    },
+    {
+      "user_id": 116,
+      "name": "Bob",
+      "secret_passion": "contact zoos"
+    }
+  ]
+}

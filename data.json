@@ -10,6 +10,16 @@
       "user_id": 116,
       "name": "Bob Rorberts aka Beast",
       "secret_passion": "contact zoos"
+    },
+    {
+      "user_id": 555,
+      "name": "Lily",
+      "secret_passion": "sweets"
+    },
+    {
+      "user_id": 105,
+      "name": "Goose",
+      "secret_passion": "hiking"
     }
   ]
 }

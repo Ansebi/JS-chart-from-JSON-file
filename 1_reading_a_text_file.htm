@@ -4,7 +4,6 @@
 <div id="the_div">Default text</div>
 <div id="address_div"></div>
 <button onclick="readAndShowText_(TEXT_ADDRESS_)">Read and Display</button>
-</body>
 
 <script>
 let TEXT_ADDRESS_ = "http://localhost:8000/text.txt";
@@ -20,4 +19,6 @@ function readAndShowText_(address_) {
     .then((text_) => revealMessage(text_));
 }
 </script>
+
+</body>
 </html>

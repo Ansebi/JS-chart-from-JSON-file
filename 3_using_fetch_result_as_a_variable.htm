@@ -4,7 +4,6 @@
 <div id="the_div">Hidden value</div>
 <div id="address_div"></div>
 <button onclick="readAndShowValue_(FILE_ADDRESS_)">Read and Display</button>
-</body>
 
 <script>
 let FILE_ADDRESS_ = "http://localhost:8000/integer_to_read";
@@ -26,6 +25,7 @@ async function readAndShowValue_(address_) {
   const value_ = await readIntFromFile_(address_);
   revealMessage_(value_);
 }
-
 </script>
+
+</body>
 </html>

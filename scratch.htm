@@ -1,9 +1,20 @@
 <html>
 
+<head>
+<link rel="stylesheet" type="text/css" href="style.css" </link>
+</head>
+
 <body>
 <div id="the_div">Hidden name</div>
 <div id="address_div"></div>
 <button onclick="readAndShowValues_(JSON_ADDRESS_, 'users', 'user_id')">Read and Display</button>
+
+<div class="container column">
+  <div class="item" id="bar0">1</div>
+  <div class="item" id="bar1">2</div>
+  <div class="item" id="bar2">3</div>
+  <div class="item" id="bar3">4</div>
+</div>
 
 <script>
 let JSON_ADDRESS_ = "http://localhost:8000/data.json";
@@ -35,15 +46,22 @@ address_,
 upper_level,
 field_) {
   const json_object_ = await readJSON_(address_);
-  const json_len_ = Object.keys(json_object_).length;
+  const json_len_ = Object.keys(json_object_[upper_level]).length;
   var id_list_ = [];
-  for (let n = 0; n <= json_len_; n++) {
+  for (let n = 0; n < json_len_; n++) {
     var value_ = await JSON_extract_value(
     json_object_,
     upper_level,
     n,
     field_);
+    var name_ = await JSON_extract_value(
+    json_object_,
+    upper_level,
+    n,
+    "name");
     id_list_.push(value_);
+    document.getElementById('bar' + n).innerHTML = name_;
+    document.getElementById('bar' + n).style.width = value_
   };
   var message_ = 'The ids are: ';
   message_ += id_list_;

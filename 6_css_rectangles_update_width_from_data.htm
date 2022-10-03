@@ -1,18 +1,23 @@
 <html>
 
+<head>
+<link rel="stylesheet" type="text/css" href="style.css" </link>
+</head>
+
 <body>
-<div id="the_div">Hidden user ids...</div>
 <div id="address_div"></div>
-<button onclick="readAndShowValues_(JSON_ADDRESS_, 'users', 'user_id')">Read and Display</button>
+<button onclick="readAndIllustrate_(JSON_ADDRESS_, 'users', 'user_id')">Read and Display</button>
+
+<div class="container column">
+  <div class="item" id="bar0">1</div>
+  <div class="item" id="bar1">2</div>
+  <div class="item" id="bar2">3</div>
+  <div class="item" id="bar3">4</div>
+</div>
 
 <script>
 let JSON_ADDRESS_ = "http://localhost:8000/data.json";
 document.getElementById("address_div").innerHTML = "File to parse: " + JSON_ADDRESS_;
-
-function revealMessage_(message_) {
-  var message_;
-  document.getElementById("the_div").innerHTML = message_;
-}
 
 async function readJSON_(address_) {
   const resp_ = await fetch(address_, {cache: "reload"});
@@ -30,7 +35,7 @@ function JSON_extract_value(
   return value_;
 }
 
-async function readAndShowValues_(
+async function readAndIllustrate_(
 address_,
 upper_level,
 field_) {
@@ -42,8 +47,15 @@ field_) {
     json_object_,
     upper_level,
     n,
-    field_);
+    "hp");
+    var name_ = JSON_extract_value(
+    json_object_,
+    upper_level,
+    n,
+    "name");
     id_list_.push(value_);
+    document.getElementById('bar' + n).innerHTML = name_;
+    document.getElementById('bar' + n).style.width = value_
   };
   var message_ = 'The ids are: ';
   message_ += id_list_;

@@ -2,24 +2,28 @@
   "users":
   [
     {
-      "user_id": 105,
+      "user_id": 116,
       "name": "Nicolas Cage",
-      "secret_passion": "ballet"
+      "secret_passion": "ballet",
+      "hp": 320
     },
     {
-      "user_id": 267,
+      "user_id": 117,
       "name": "Bob Rorberts aka Beast",
-      "secret_passion": "contact zoos"
+      "secret_passion": "contact zoos",
+      "hp": 400
     },
     {
-      "user_id": 499,
+      "user_id": 118,
       "name": "Lily",
-      "secret_passion": "sweets"
+      "secret_passion": "sweets",
+      "hp": 250
     },
     {
-      "user_id": 108,
+      "user_id": 119,
       "name": "Goose",
-      "secret_passion": "hiking"
+      "secret_passion": "hiking",
+      "hp": 70
     }
   ]
 }

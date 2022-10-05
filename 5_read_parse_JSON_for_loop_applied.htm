@@ -20,31 +20,43 @@ async function readJSON_(address_) {
   return json_parsed;
 }
 
-function JSON_extract_value(
+function JSON_extract_value_(
   parsed_json_object,
   upper_level,
   n,
-  field_) {
+  feature_name_) {
   // json = {upper_level: [{...}, {...}, {...} ...]}
-  const value_ = parsed_json_object[upper_level][n][field_]
+  const value_ = parsed_json_object[upper_level][n][feature_name_]
   return value_;
 }
 
-async function readAndShowValues_(
-address_,
-upper_level,
-field_) {
-  const json_object_ = await readJSON_(address_);
+async function JSON_extract_values_list_(
+  // json = {upper_level: [{...}, {...}, {...} ...]}
+  json_address_,
+  upper_level,
+  feature_name_) {
+  const json_object_ = await readJSON_(json_address_);
   const json_len_ = Object.keys(json_object_[upper_level]).length;
-  var id_list_ = [];
+  var values_list_ = [];
   for (let n = 0; n < json_len_; n++) {
-    var value_ = JSON_extract_value(
+    var value_ = JSON_extract_value_(
     json_object_,
     upper_level,
     n,
-    field_);
-    id_list_.push(value_);
+    feature_name_);
+    values_list_.push(value_);
   };
+  return values_list_;
+}
+
+async function readAndShowValues_(
+json_address_,
+upper_level,
+feature_name_) {
+  const id_list_ = await JSON_extract_values_list_(
+    json_address_,
+    upper_level,
+    feature_name_);
   var message_ = 'The ids are: ';
   message_ += id_list_;
   message_ += '. Total number: ';

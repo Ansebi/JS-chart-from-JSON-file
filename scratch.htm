@@ -1,91 +1,70 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
 
+<head>
+<link rel="stylesheet" type="text/css" href="style.css" </link>
+</head>
 
-        <link rel="stylesheet" type="text/css" href="https://rawgit.com/gionkunz/chartist-js/master/dist/chartist.min.css">
+<body>
+<div id="address_div"></div>
+<button onclick="readAndIllustrate_(JSON_ADDRESS_, 'users', 'user_id')">Read and Display</button>
 
-        <style>
-            #chart {
-                height: 500px;
-                width: 50%;
-            }
-        </style>
+<div class="container column">
+  <div class="item" id="bar0">1</div>
+  <div class="item" id="bar1">2</div>
+  <div class="item" id="bar2">3</div>
+  <div class="item" id="bar3">4</div>
+</div>
 
-    </head>
-    <body>
+<script>
+let JSON_ADDRESS_ = "http://localhost:8000/data.json";
+document.getElementById("address_div").innerHTML = "File to parse: " + JSON_ADDRESS_;
 
-        <div class="ct-chart" id="chart"></div>
+async function readJSON_(address_) {
+  const resp_ = await fetch(address_, {cache: "reload"});
+  const json_parsed = await resp_.json();
+  return json_parsed;
+}
 
-        <script type="text/javascript" src="https://rawgit.com/gionkunz/chartist-js/master/dist/chartist.js"></script>
-        <script type="text/javascript" src="http://localhost:8000/chartist-plugin-axistitle.js"></script>
+function JSON_extract_value(
+  parsed_json_object,
+  upper_level,
+  n,
+  field_) {
+  // json = {upper_level: [{...}, {...}, {...} ...]}
+  const value_ = parsed_json_object[upper_level][n][field_]
+  return value_;
+}
 
-        <script>
-        
+async function readAndIllustrate_(
+address_,
+upper_level,
+field_) {
+  const json_object_ = await readJSON_(address_);
+  const json_len_ = Object.keys(json_object_[upper_level]).length;
+  var id_list_ = [];
+  for (let n = 0; n < json_len_; n++) {
+    var value_ = JSON_extract_value(
+    json_object_,
+    upper_level,
+    n,
+    "hp");
+    var name_ = JSON_extract_value(
+    json_object_,
+    upper_level,
+    n,
+    "name");
+    id_list_.push(value_);
+    document.getElementById('bar' + n).innerHTML = name_;
+    document.getElementById('bar' + n).style.width = value_;
+  };
+  var message_ = 'The ids are: ';
+  message_ += id_list_;
+  message_ += '. Total number: ';
+  message_ += id_list_.length;
+  message_ += ' ids.';
+  revealMessage_(message_);
+}
+</script>
 
-
-
-
-
-          var chart = new Chartist.Bar('.ct-chart', {
-            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-            series: [
-              [1, 5, 2, 5, 4, 3],
-              [2, 3, 4, 8, 1, 2],
-              [5, 4, 3, 2, 1, 0.5],
-            ]
-          }, {
-            low: 0,
-            showArea: true,
-            showPoint: false,
-            fullWidth: true,
-            chartPadding: {
-              top: 30,
-              right: 30,
-              bottom: 30,
-              left: 30
-            },
-            plugins: [
-              Chartist.plugins.ctAxisTitle({
-                        axisX: {
-                          axisTitle: 'Character',
-                          axisClass: 'ct-axis-title',
-                          offset: {
-                            x: 0,
-                            y: 50
-                          },
-                          textAnchor: 'middle'
-                        },
-                        axisY: {
-                          axisTitle: 'HP, Armor, Energy',
-                          axisClass: 'ct-axis-title',
-                          offset: {
-                            x: 0,
-                            y: 25
-                          },
-                          textAnchor: 'middle',
-                          flipTitle: true //y offset negative if true
-                        }
-                      })
-                    ]
-          });
-
-          chart.on('draw', function(data) {
-            console.log(data);
-            if(data.type == 'bar') {
-                data.element.animate({
-                    y2: {
-                        dur: 500,
-                        from: data.y1,
-                        to: data.y2
-                        }
-                    });
-                }
-            });
-
-        </script>
-    </body>
+</body>
 </html>

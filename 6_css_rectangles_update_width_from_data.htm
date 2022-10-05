@@ -41,7 +41,6 @@ upper_level,
 field_) {
   const json_object_ = await readJSON_(address_);
   const json_len_ = Object.keys(json_object_[upper_level]).length;
-  var id_list_ = [];
   for (let n = 0; n < json_len_; n++) {
     var value_ = JSON_extract_value(
     json_object_,
@@ -53,16 +52,9 @@ field_) {
     upper_level,
     n,
     "name");
-    id_list_.push(value_);
     document.getElementById('bar' + n).innerHTML = name_;
     document.getElementById('bar' + n).style.width = value_;
   };
-  var message_ = 'The ids are: ';
-  message_ += id_list_;
-  message_ += '. Total number: ';
-  message_ += id_list_.length;
-  message_ += ' ids.';
-  revealMessage_(message_);
 }
 </script>
 

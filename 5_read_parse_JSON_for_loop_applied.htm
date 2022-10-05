@@ -31,10 +31,10 @@ function JSON_extract_value_(
 }
 
 async function JSON_extract_values_list_(
-  // json = {upper_level: [{...}, {...}, {...} ...]}
   json_address_,
   upper_level,
   feature_name_) {
+  // json = {upper_level: [{...}, {...}, {...} ...]}
   const json_object_ = await readJSON_(json_address_);
   const json_len_ = Object.keys(json_object_[upper_level]).length;
   var values_list_ = [];

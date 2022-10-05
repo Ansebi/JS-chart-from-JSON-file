@@ -31,10 +31,10 @@ function JSON_extract_value_(
 }
 
 async function JSON_extract_values_list_(
-  // json = {upper_level: [{...}, {...}, {...} ...]}
   json_address_,
   upper_level,
   feature_name_) {
+  // json = {upper_level: [{...}, {...}, {...} ...]}
   const json_object_ = await readJSON_(json_address_);
   const json_len_ = Object.keys(json_object_[upper_level]).length;
   var values_list_ = [];
@@ -64,6 +64,23 @@ feature_name_) {
   message_ += ' ids.';
   revealMessage_(message_);
 }
+
+async function JSON_extract_multiple_lists_(features_list_) {
+  var results_ = [];
+  for (feature_ of features_list_) {
+    var values_ = await JSON_extract_values_list_(
+      JSON_ADDRESS_,
+      'users',
+      feature_);
+    results_.push(values_);
+  };
+  const [names_, hps_] = results_;
+  console.log(names_);
+  console.log(hps_);
+  return results_;
+}
+
+JSON_extract_multiple_lists_(['name', 'hp']);
 </script>
 
 </body>

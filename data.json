@@ -5,25 +5,33 @@
       "user_id": 116,
       "name": "Nicolas Cage",
       "secret_passion": "ballet",
-      "hp": 320
+      "hp": 100,
+      "armor" : 225,
+      "energy": 25
     },
     {
       "user_id": 117,
-      "name": "Bob Rorberts aka Beast",
+      "name": "Dr. Penguin",
       "secret_passion": "contact zoos",
-      "hp": 400
+      "hp": 250,
+      "armor" : 125,
+      "energy": 75
     },
     {
       "user_id": 118,
       "name": "Lily",
       "secret_passion": "sweets",
-      "hp": 250
+      "hp": 50,
+      "armor" : 30,
+      "energy": 200
     },
     {
       "user_id": 119,
       "name": "Goose",
       "secret_passion": "hiking",
-      "hp": 70
+      "hp": 70,
+      "armor" : 75,
+      "energy": 100
     }
   ]
 }
